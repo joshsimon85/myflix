@@ -1,7 +1,102 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+Category.create(name: 'horror')
+Category.create(name: 'comedy')
+Category.create(name: 'drama')
+Category.create(name: 'action')
+
+Video.create(
+  title: 'Family Guy',
+  small_cover_url: '/tmp/family_guy.jpg',
+  large_cover_url: '/tmp/monk_large.jpg',
+  description: 'Family Guy is an animated tv series.',
+  category_id: [1, 2, 3, 4].sample
+)
+
+Video.create(
+  title: 'Futurama',
+  small_cover_url: '/tmp/futurama.jpg',
+  large_cover_url: '/tmp/monk_large.jpg',
+  description: 'Futurama is an animated comedy tv series.',
+  category_id: [1, 2, 3, 4].sample
+)
+
+Video.create(
+  title: 'South Park',
+  small_cover_url: '/tmp/south_park.jpg',
+  large_cover_url: '/tmp/monk_large.jpg',
+  description: 'South Park is an animated comedy tv series.',
+  category_id: [1, 2, 3, 4].sample
+
+)
+
+Video.create(
+  title: 'Family Guy',
+  small_cover_url: '/tmp/family_guy.jpg',
+  large_cover_url: '/tmp/monk_large.jpg',
+  description: 'Family Guy is an animated tv series.',
+  category_id: [1, 2, 3, 4].sample
+)
+
+Video.create(
+  title: 'Futurama',
+  small_cover_url: '/tmp/futurama.jpg',
+  large_cover_url: '/tmp/monk_large.jpg',
+  description: 'Futurama is an animated comedy tv series.',
+  category_id: [1, 2, 3, 4].sample
+)
+
+Video.create(
+  title: 'South Park',
+  small_cover_url: '/tmp/south_park.jpg',
+  large_cover_url: '/tmp/monk_large.jpg',
+  description: 'South Park is an animated comedy tv series.',
+  category_id: 1
+)
+
+Video.create(
+  title: 'Family Guy',
+  small_cover_url: '/tmp/family_guy.jpg',
+  large_cover_url: '/tmp/monk_large.jpg',
+  description: 'Family Guy is an animated tv series.',
+  category_id: 1
+)
+
+Video.create(
+  title: 'Futurama',
+  small_cover_url: '/tmp/futurama.jpg',
+  large_cover_url: '/tmp/monk_large.jpg',
+  description: 'Futurama is an animated comedy tv series.',
+  category_id: 1
+)
+
+Video.create(
+  title: 'South Park',
+  small_cover_url: '/tmp/south_park.jpg',
+  large_cover_url: '/tmp/monk_large.jpg',
+  description: 'South Park is an animated comedy tv series.',
+  category_id: 1
+
+)
+
+Video.create(
+  title: 'Family Guy',
+  small_cover_url: '/tmp/family_guy.jpg',
+  large_cover_url: '/tmp/monk_large.jpg',
+  description: 'Family Guy is an animated tv series.',
+  category_id: 1
+)
+
+Video.create(
+  title: 'Futurama',
+  small_cover_url: '/tmp/futurama.jpg',
+  large_cover_url: '/tmp/monk_large.jpg',
+  description: 'Futurama is an animated comedy tv series.',
+  category_id: 1
+)
+
+Video.create(
+  title: 'South Park',
+  small_cover_url: '/tmp/south_park.jpg',
+  large_cover_url: '/tmp/monk_large.jpg',
+  description: 'South Park is an animated comedy tv series.',
+  category_id: 1
+)
