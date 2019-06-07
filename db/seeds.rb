@@ -100,3 +100,9 @@ Video.create(
   description: 'South Park is an animated comedy tv series.',
   category_id: 1
 )
+
+User.create(
+  email: 'jon@test.com',
+  full_name: 'Jon Doe',
+  password: 'password'
+)
