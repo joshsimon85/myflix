@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe VideosController do
   describe 'GET show' do
-    it 'sets @video for unauthenticated users' do
+    it 'sets @video for authenticated users' do
       session[:user_id] = Fabricate(:user).id
       video = Fabricate(:video)
       get :show, id: video.id
@@ -13,6 +13,15 @@ describe VideosController do
       video = Fabricate(:video)
       get :show, id: video.id
       expect(response).to redirect_to sign_in_path
+    end
+
+    it 'sets @reviews for authenticated users' do
+      session[:user_id] = Fabricate(:user).id
+      video = Fabricate(:video)
+      review = Fabricate(:review, video: video)
+      review_2 = Fabricate(:review, video: video)
+      get :show, id: video.id
+      assigns(:reviews).should =~ [review, review_2]
     end
   end
 

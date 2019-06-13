@@ -106,3 +106,41 @@ User.create(
   full_name: 'Jon Doe',
   password: 'password'
 )
+
+User.create(
+  email: 'jane@test.com',
+  full_name: 'Jane Doe',
+  password: 'password'
+)
+
+Review.create(
+  full_name: User.first.full_name,
+  body: Faker::Lorem.paragraph(3),
+  rating: Faker::Number.between(1, 5),
+  video_id: Video.first.id,
+  user_id: User.first.id,
+)
+
+Review.create(
+  full_name: User.second.full_name,
+  body: Faker::Lorem.paragraph(3),
+  rating: Faker::Number.between(1, 5),
+  video_id: Video.first.id,
+  user_id: User.second.id,
+)
+
+Review.create(
+  full_name: User.first.full_name,
+  body: Faker::Lorem.paragraph(3),
+  rating: Faker::Number.between(1, 5),
+  video_id: Video.second.id,
+  user_id: User.first.id
+)
+
+Review.create(
+  full_name: User.second.full_name,
+  body: Faker::Lorem.paragraph(3),
+  rating: Faker::Number.between(1, 5),
+  video_id: Video.second.id,
+  user_id: User.second.id
+)

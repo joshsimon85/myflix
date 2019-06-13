@@ -16,58 +16,60 @@ describe SessionsController do
 
   describe 'POST create' do
     context 'with valid credentials' do
-
-      it 'pust the signed in user into the session' do
-        alice = Fabricate(:user)
+      let(:alice) { Fabricate(:user) }
+      before do
         post :create, email: alice.email, password: alice.password
+      end
+
+      it 'puts the signed in user into the session' do
         expect(session[:user_id]).to eq(alice.id)
       end
 
       it 'redirects to the home path' do
-        alice = Fabricate(:user)
-        post :create, email: alice.email, password: alice.password
         expect(response).to redirect_to home_path
       end
 
       it 'sets the notice' do
-        alice = Fabricate(:user)
-        post :create, email: alice.email, password: alice.password
         expect(flash[:notice]).not_to be_blank
       end
     end
 
     context 'with invalid credentials' do
-      it 'does not put a user in the session' do
+      before do
         alice = Fabricate(:user)
         post :create, email: alice.email, password: alice.password + '123'
+      end
+
+      it 'does not put a user in the session' do
         expect(session[:user_id]).to be_nil
       end
 
       it 'redirects to sign in path' do
-        alice = Fabricate(:user)
-        post :create, email: alice.email, password: alice.password + '123'
         expect(response).to redirect_to sign_in_path
       end
 
       it 'sets the error' do
-        alice = Fabricate(:user)
-        post :create, email: alice.email, password: alice.password + '123'
         expect(flash[:error]).not_to be_blank
       end
     end
   end
 
   describe 'GET destoy' do
-    it 'clears the session for the user' do
+    before do
       session[:user_id] = Fabricate(:user).id
       get :destroy
+    end
+
+    it 'clears the session for the user' do
       expect(session[:user_id]).to be_nil
     end
 
     it 'redirects the the root path' do
-      session[:user_id] = Fabricate(:user).id
-      get  :destroy
       expect(response).to redirect_to root_path
+    end
+
+    it 'sets the notice' do
+      expect(flash[:notice]).to_not be_blank
     end
   end
 end
