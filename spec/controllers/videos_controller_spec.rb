@@ -2,17 +2,15 @@ require 'spec_helper'
 
 describe VideosController do
   describe 'GET show' do
+    it_behaves_like 'requires sign in' do
+      let(:action) { get :show, id: 3 }
+    end
+
     it 'sets @video for authenticated users' do
       session[:user_id] = Fabricate(:user).id
       video = Fabricate(:video)
       get :show, id: video.id
       expect(assigns(:video)).to eq(video)
-    end
-
-    it 'redirects the user to the sign in page if unauthenticated' do
-      video = Fabricate(:video)
-      get :show, id: video.id
-      expect(response).to redirect_to sign_in_path
     end
 
     it 'sets @reviews for authenticated users' do
@@ -26,17 +24,15 @@ describe VideosController do
   end
 
   describe 'POST search' do
+    it_behaves_like 'requires sign in' do
+      let(:action) { post :search, query: 'rama' }
+    end
+
     it 'sets results for authenticated users' do
       session[:user_id] = Fabricate(:user).id
       futurama = Fabricate(:video, title: 'Futurama')
       post :search, query: 'rama'
       expect(assigns(:videos)).to eq([futurama])
-    end
-
-    it 'redirects to sign in page for unauthenticated users' do
-      futurama = Fabricate(:video, title: 'Futurama')
-      post :search, query: 'rama'
-      expect(response).to redirect_to sign_in_path
     end
   end
 end
