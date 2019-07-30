@@ -101,15 +101,21 @@ Video.create(
   category_id: 1
 )
 
-User.create(
-  email: 'jon@test.com',
+jon = User.create(
+  email: 'jon@doe.com',
   full_name: 'Jon Doe',
   password: 'password'
 )
 
-User.create(
-  email: 'jane@test.com',
+jane = User.create(
+  email: 'jane@doe.com',
   full_name: 'Jane Doe',
+  password: 'password'
+)
+
+alice = User.create(
+  email: 'alice@doe.com',
+  full_name: 'Alice Doe',
   password: 'password'
 )
 
@@ -144,3 +150,11 @@ Review.create(
   video_id: Video.second.id,
   user_id: User.second.id
 )
+
+Relationship.create(follower_id: jane.id , leader_id: jon.id)
+
+Relationship.create(follower_id: alice.id, leader_id: jon.id)
+
+Relationship.create(follower_id: jon.id, leader_id: jane.id)
+
+Relationship.create(follower_id: jon.id, leader_id: alice.id)
