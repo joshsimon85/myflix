@@ -11,6 +11,7 @@ Myflix::Application.routes.draw do
   get 'my_queue', to: 'queue_items#index'
   post 'my_queue', to: 'queue_items#destroy'
   post 'update_queue', to: 'queue_items#update_queue'
+  get 'expired_token', to: 'password_resets#expired_token'
 
   resources :videos, only: :show do
     collection do
@@ -20,6 +21,7 @@ Myflix::Application.routes.draw do
     resources :reviews, only: :create
   end
 
+  resources :password_resets, only: [:show, :create]
   resources :forgot_passwords, only: :create
   resources :queue_items, only: [:create, :destroy]
   resources :categories, only: :show

@@ -5,7 +5,7 @@ describe ForgotPasswordsController do
     context 'with blank inputs' do
       it 'redirect to the forgot password page' do
         post :create, email: ''
-        expect(response).to redirect_to forgot_passwords_path
+        expect(response).to redirect_to forgot_password_path
       end
 
       it 'show an error message' do
@@ -29,7 +29,15 @@ describe ForgotPasswordsController do
     end
 
     context 'with nonexisting email' do
+      it 'redirects to the forgot password page' do
+        post :create, email: 'foo@example.com'
+        expect(response).to redirect_to forgot_password_path
+      end
 
+      it 'shows an error message' do
+        post :create, email: 'foo@example.com'
+        expect(flash[:error]).to eq('There is no user with that email in the system')
+      end
     end
   end
 end
