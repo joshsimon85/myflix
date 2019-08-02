@@ -2,7 +2,7 @@ require 'spec_helper'
 
 feature 'Reseting password' do
   let(:alice) { Fabricate(:user, password: 'password') }
-  
+
   scenario 'Existing user resets password' do
     visit sign_in_path
     click_link 'Forgot Password'
@@ -25,5 +25,6 @@ feature 'Reseting password' do
     click_on 'Sign in'
 
     page.should have_content "Welcome, #{alice.full_name}"
+    clear_email
   end
 end

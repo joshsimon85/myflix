@@ -5,11 +5,14 @@
         %header
           %h1 Invite a friend to join MyFlix!
         %fieldset
-          .form-group.col-sm-4
-            = f.text_field :recipient_name, class: 'form-control', label: "Friend's Name"
-          .form-group.col-sm-4
-            = f.text_field :recipient_email, class: 'form-control', label: "Friend's Email Address"
-          .form-group.col-sm-6
-            = f.text_area :message, rows: 6, placeholder: 'Please join this really cool site!', class: 'form-control', label: 'Invitation Message'
+          %div.row
+            .form-group.col-sm-4
+              = f.text_field :recipient_name, class: 'form-control', label: "Friend's Name"
+          %div.row
+            .form-group.col-sm-4
+              = f.text_field :recipient_email, class: 'form-control', label: "Friend's Email Address"
+          %div.row
+            .form-group.col-sm-6
+              = f.text_area :message, rows: 6, placeholder: 'Please join this really cool site!', class: 'form-control', label: 'Invitation Message'
         %fieldset.form-group.action
           =f.submit 'Send Invitation', class: 'btn btn-default'

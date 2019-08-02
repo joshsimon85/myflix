@@ -11,8 +11,8 @@ Myflix::Application.routes.draw do
   get 'my_queue', to: 'queue_items#index'
   post 'my_queue', to: 'queue_items#destroy'
   post 'update_queue', to: 'queue_items#update_queue'
-  get 'expired_token', to: 'password_resets#expired_token'
-
+  get 'expired_token', to: 'pages#expired_token'
+  get 'register/:token', to: 'users#new_with_invitation_token', as: 'register_with_token'
   resources :videos, only: :show do
     collection do
       get '/search', to: 'videos#search'
