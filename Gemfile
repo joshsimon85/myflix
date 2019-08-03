@@ -3,7 +3,6 @@ ruby '2.3.1'
 
 gem 'bootstrap_form'
 gem 'bootstrap-sass', '3.1.1.1'
-gem 'bundler', '1.16.1'
 gem 'bcrypt'
 gem 'coffee-rails'
 gem 'fabrication', '2.15.2'

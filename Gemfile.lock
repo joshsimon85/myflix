@@ -240,7 +240,6 @@ DEPENDENCIES
   binding_of_caller
   bootstrap-sass (= 3.1.1.1)
   bootstrap_form
-  bundler (= 1.16.1)
   capybara
   capybara-email
   coffee-rails
