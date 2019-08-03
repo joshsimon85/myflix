@@ -21,17 +21,17 @@ feature 'User interacts with relationships' do
     click_on_review
 
     follow_user
-    page.should have_content bob.full_name
+    expect(page).to have_content bob.full_name
 
     visit user_path(alice)
-    page.should have_no_content 'Follow'
+    expect(page).not_to have_content 'Follow'
 
     visit people_path
     unfollow(bob)
-    page.should have_no_content bob.full_name
+    expect(page).not_to have_content bob.full_name
 
     visit user_path(alice)
-    page.should have_no_content 'Follow'
+    expect(page).not_to have_content 'Follow'
   end
 
   def click_on_video

@@ -1,0 +1,3 @@
+update instant queue button not working if there is nothing in the queue
+if there are two items in the queue and you change one to position one it does not change
+fix flash error and success messages

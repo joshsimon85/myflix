@@ -1,7 +1,7 @@
 Myflix::Application.configure do
   config.cache_classes = true
 
-  config.serve_static_assets = true
+  config.serve_static_files = true
   config.static_cache_control = "public, max-age=3600"
 
   config.eager_load = false
@@ -11,7 +11,7 @@ Myflix::Application.configure do
 
   config.action_dispatch.show_exceptions = false
   config.action_mailer.default_url_options = { host: 'localhost:3000' }
-  
+
   config.action_controller.allow_forgery_protection    = false
 
   config.action_mailer.delivery_method = :test

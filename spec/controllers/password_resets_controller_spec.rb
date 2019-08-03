@@ -32,7 +32,7 @@ describe PasswordResetsController do
       it 'updates the user password' do
         alice = Fabricate(:user, password: 'old_password')
         post :create, token: alice.token, password: 'new_password'
-        expect(alice.reload.authenticate('new_password')).to be_true
+        expect(alice.reload.authenticate('new_password')).to be_truthy
       end
 
       it 'sets the flash success message' do

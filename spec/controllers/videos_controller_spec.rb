@@ -19,7 +19,7 @@ describe VideosController do
       review = Fabricate(:review, video: video)
       review_2 = Fabricate(:review, video: video)
       get :show, id: video.id
-      assigns(:reviews).should =~ [review, review_2]
+      expect(assigns(:reviews)).to match_array([review, review_2])
     end
   end
 

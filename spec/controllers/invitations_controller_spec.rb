@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe InvitationsController do
+  after { ActionMailer::Base.deliveries.clear }
+
   describe 'GET new' do
     it 'sets @invitation to a new invitation' do
       set_current_user

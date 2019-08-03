@@ -10,7 +10,7 @@ feature 'Reseting password' do
     fill_in 'Email Address', with: alice.email
     click_on 'Send Email'
 
-    page.should have_content 'We have sent an'
+    expect(page).to have_content 'We have sent an'
 
     open_email(alice.email)
 
@@ -24,7 +24,7 @@ feature 'Reseting password' do
     fill_in 'Password', with: 'new_password'
     click_on 'Sign in'
 
-    page.should have_content "Welcome, #{alice.full_name}"
+    expect(page).to have_content "Welcome, #{alice.full_name}"
     clear_email
   end
 end

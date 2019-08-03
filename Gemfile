@@ -1,18 +1,22 @@
 source 'https://rubygems.org'
-ruby '2.1.2'
+ruby '2.3.1'
 
 gem 'bootstrap_form'
 gem 'bootstrap-sass', '3.1.1.1'
+gem 'bundler', '1.16.1'
 gem 'bcrypt'
 gem 'coffee-rails'
 gem 'fabrication', '2.15.2'
-gem 'faker'
-gem 'rails', '4.1.1'
+gem 'faker', '1.6.1'
+gem 'rb-readline'
+gem 'rails', '4.2.0'
 gem 'haml-rails'
 gem 'sass-rails'
+gem 'rake', '<11.0'
 gem 'uglifier'
 gem 'jquery-rails'
-gem 'pg'
+gem 'pg', '0.20'
+gem 'sidekiq'
 
 group :development do
   gem 'thin'
@@ -24,12 +28,12 @@ end
 group :development, :test do
   gem 'pry'
   gem 'pry-nav'
-  gem 'rspec-rails', '2.99'
+  gem 'rspec-rails'
 end
 
 group :test do
   gem 'nokogiri', '1.8'
-  gem 'capybara', '2.0.0'
+  gem 'capybara'
   gem 'capybara-email'
   gem 'database_cleaner', '1.4.1'
   gem 'launchy'
