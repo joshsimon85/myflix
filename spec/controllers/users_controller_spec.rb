@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe UsersController do
+  after { Sidekiq::Worker.clear_all }
+
   describe 'GET new' do
     it 'sets @user' do
       get :new
