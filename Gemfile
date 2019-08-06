@@ -18,6 +18,7 @@ gem 'uglifier'
 gem 'unicorn'
 gem 'jquery-rails'
 gem 'pg', '0.20'
+gem 'sentry-raven'
 gem 'sidekiq'
 
 group :development do
