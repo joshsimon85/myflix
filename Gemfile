@@ -44,6 +44,6 @@ group :test do
   gem 'vcr', '2.9.3'
 end
 
-group :production do
+group :production, :staging do
   gem 'rails_12factor'
 end
