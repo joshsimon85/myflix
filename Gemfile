@@ -35,7 +35,7 @@ group :development, :test do
 end
 
 group :test do
-  gem 'nokogiri', '1.8'
+  gem 'nokogiri', '>=1.8'
   gem 'capybara'
   gem 'capybara-email'
   gem 'database_cleaner', '1.4.1'
