@@ -8,7 +8,6 @@ gem 'carrierwave'
 gem 'coffee-rails'
 gem 'fabrication', '2.15.2'
 gem 'faker', '1.6.1'
-gem 'fog-aws'
 gem 'mini_magick'
 gem 'rb-readline'
 gem 'rails', '4.2.0'
@@ -49,5 +48,6 @@ group :test do
 end
 
 group :production, :staging do
+  gem 'fog-aws'
   gem 'rails_12factor'
 end
