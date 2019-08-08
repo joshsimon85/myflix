@@ -6,6 +6,7 @@ CarrierWave.configure do |config|
       :aws_secret_access_key  => ENV[:aws_secret_access_key],
     }
     config.storage = :fog
+    config.fog_provider = 'fog/aws'
     config.fog_directory  = 'name_of_directory'
   else
     config.storage = :file
