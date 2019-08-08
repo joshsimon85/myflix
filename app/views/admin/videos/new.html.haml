@@ -9,12 +9,12 @@
             %li.active
               %a(href="") Add a New Video
           %br
-          %fieldset.col-md-8.col-md-offset-2
+          %fieldset.col-md-10.col-md
             =f.text_field :title, class: 'form-control'
             =f.select :category_id, options_for_select(Category.all.map { |category| [category.name, category.id] })
             =f.text_area :description, rows: 8, class: 'span6'
             =f.file_field :large_cover, class: 'btn btn-file'
             =f.file_field :small_cover, class: 'btn btn-file'
           %fieldset.actions.col-md-8
-            .col-sm-6.col-md-offset-5
+            .col-sm-8.col-md-offset-2
               %input(type="submit" value="Add Video" class="btn btn-default")
