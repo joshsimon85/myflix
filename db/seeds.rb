@@ -104,7 +104,8 @@ Video.create(
 jon = User.create(
   email: 'jon@doe.com',
   full_name: 'Jon Doe',
-  password: 'password'
+  password: 'password',
+  admin: true
 )
 
 jane = User.create(

@@ -4,9 +4,11 @@ ruby '2.3.1'
 gem 'bootstrap_form'
 gem 'bootstrap-sass', '3.1.1.1'
 gem 'bcrypt'
+gem 'carrierwave'
 gem 'coffee-rails'
 gem 'fabrication', '2.15.2'
 gem 'faker', '1.6.1'
+gem 'mini_magick'
 gem 'rb-readline'
 gem 'rails', '4.2.0'
 gem 'foreman'
@@ -29,6 +31,7 @@ group :development do
 end
 
 group :development, :test do
+  gem 'dotenv-rails'
   gem 'pry'
   gem 'pry-nav'
   gem 'rspec-rails'

@@ -17,3 +17,7 @@ end
 def sign_out
   visit sign_out_path
 end
+
+def set_current_admin(admin=nil)
+  session[:user_id] = (admin || Fabricate(:admin).id)
+end

@@ -13,3 +13,11 @@ shared_examples 'tokenable' do
     expect(object.token).to be_present
   end
 end
+
+shared_examples 'requires admin' do
+  it 'redirects to home page' do
+    session[:user_id] = Fabricate(:user).id
+    action
+    expect(response).to redirect_to root_path
+  end
+end

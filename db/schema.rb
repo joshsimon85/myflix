@@ -11,18 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190802102151) do
+ActiveRecord::Schema.define(version: 20190806183750) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "categories", force: true do |t|
+  create_table "categories", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "invitations", force: true do |t|
+  create_table "invitations", force: :cascade do |t|
     t.string   "recipient_name"
     t.string   "recipient_email"
     t.text     "message"
@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 20190802102151) do
     t.string   "token"
   end
 
-  create_table "queue_items", force: true do |t|
+  create_table "queue_items", force: :cascade do |t|
     t.integer  "position"
     t.integer  "video_id"
     t.integer  "user_id"
@@ -40,14 +40,14 @@ ActiveRecord::Schema.define(version: 20190802102151) do
     t.datetime "updated_at"
   end
 
-  create_table "relationships", force: true do |t|
+  create_table "relationships", force: :cascade do |t|
     t.integer  "leader_id"
     t.integer  "follower_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "reviews", force: true do |t|
+  create_table "reviews", force: :cascade do |t|
     t.string   "full_name"
     t.text     "body"
     t.integer  "rating"
@@ -57,16 +57,17 @@ ActiveRecord::Schema.define(version: 20190802102151) do
     t.integer  "user_id"
   end
 
-  create_table "users", force: true do |t|
+  create_table "users", force: :cascade do |t|
     t.string   "email"
     t.string   "full_name"
     t.string   "password_digest"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "token"
+    t.boolean  "admin"
   end
 
-  create_table "videos", force: true do |t|
+  create_table "videos", force: :cascade do |t|
     t.string   "title"
     t.string   "small_cover_url"
     t.string   "large_cover_url"
