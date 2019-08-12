@@ -5,6 +5,7 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
+    Stripe.api_key = 'sk_test_fUj8Ekm9RWNPONvYAXYmVhYq00fjKT9PUS'
   end
 
   def create

@@ -164,6 +164,8 @@ GEM
     minitest (5.11.3)
     multi_json (1.13.1)
     multipart-post (2.1.1)
+    net-http-persistent (3.1.0)
+      connection_pool (~> 2.2)
     netrc (0.11.0)
     nokogiri (1.10.3)
       mini_portile2 (~> 2.4.0)
@@ -267,6 +269,9 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
+    stripe (4.23.0)
+      faraday (~> 0.13)
+      net-http-persistent (~> 3.0)
     temple (0.8.1)
     thin (1.7.2)
       daemons (~> 1.0, >= 1.0.9)
@@ -327,6 +332,7 @@ DEPENDENCIES
   sentry-raven
   shoulda-matchers (= 2.7.0)
   sidekiq
+  stripe
   thin
   uglifier
   unicorn
