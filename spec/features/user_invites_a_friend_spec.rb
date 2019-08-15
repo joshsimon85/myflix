@@ -2,20 +2,22 @@ require 'spec_helper'
 
 feature 'User invites a friend' do
   scenario 'User successfully invites a friend and invitation is accepted' do
-    alice = Fabricate(:user)
-    sign_in(alice)
+    VCR.use_cassette('pay with stripe') do
+      alice = Fabricate(:user)
+      sign_in(alice)
 
-    invite_a_friend
+      invite_a_friend
 
-    friend_accepts_invitation
+      friend_accepts_invitation
 
-    friend_signs_in
+      friend_signs_in
 
-    friend_should_follow(alice)
+      friend_should_follow(alice)
 
-    inviter_should_follow_friend(alice)
-  
-    clear_email
+      inviter_should_follow_friend(alice)
+
+      clear_email
+    end
   end
 
   def invite_a_friend
@@ -30,9 +32,12 @@ feature 'User invites a friend' do
   def friend_accepts_invitation
     open_email 'jon@example.com'
     current_email.click_link 'Accept this invitation'
-
     fill_in 'Password', with: 'password'
     fill_in 'Full Name', with: 'Jon Doe'
+    fill_in 'Credit Card Number', with: '4242424242424242'
+    fill_in 'Security Code', with: '123'
+    select '7 - July', from: 'date_month'
+    select '2020', from: 'date_year'
     click_on 'Sign Up'
   end
 

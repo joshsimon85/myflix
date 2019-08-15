@@ -40,12 +40,15 @@ end
 
 group :test do
   gem 'nokogiri', '>=1.8'
-  gem 'capybara'
+  gem 'capybara', '3.15.1'
   gem 'capybara-email'
   gem 'database_cleaner', '1.4.1'
   gem 'launchy'
+  gem 'puma'
+  gem 'selenium-webdriver', '2.53.4'
   gem 'shoulda-matchers', '2.7.0'
   gem 'vcr', '2.9.3'
+  gem 'webmock', '~> 2.1'
 end
 
 group :production, :staging do

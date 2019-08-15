@@ -12,7 +12,10 @@ describe UsersController do
 
   describe 'POST create' do
     context 'with valid input' do
-      before { post :create, user: Fabricate.attributes_for(:user) }
+      before do
+        allow(StripeWrapper::Charge).to receive(:create)
+        post :create, user: Fabricate.attributes_for(:user)
+      end
 
       it 'create the user' do
         expect(User.count).to eq(1)
@@ -48,6 +51,7 @@ describe UsersController do
 
     context 'with invalid input' do
       before do
+        allow(StripeWrapper::Charge).to receive(:create)
         post :create, user: { password: 'password', full_name: 'Jon Doe' }
       end
 
@@ -65,7 +69,10 @@ describe UsersController do
     end
 
     context 'sending emails' do
-      after {ActionMailer::Base.deliveries.clear }
+      before do
+        allow(StripeWrapper::Charge).to receive(:create)
+        ActionMailer::Base.deliveries.clear
+      end
 
       it 'sends out email to the user with valid inputs' do
         post :create, user: { email: 'jon@doe.com', password: 'password', full_name: 'Jon Doe'}
