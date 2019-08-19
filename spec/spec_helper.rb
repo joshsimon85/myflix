@@ -19,9 +19,18 @@ Sidekiq::Testing.inline!
 # option on the command line or in ~/.rspec, .rspec or `.rspec-local`.
 Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 
+Capybara.register_driver :selenium do |app|
+  Capybara::Selenium::Driver.new(app, browser: :chrome)
+end
+
+Capybara.server_port = 52662
+
+Capybara.server = :webrick
+
 VCR.configure do |c|
   c.cassette_library_dir = 'fixtures/vcr_cassettes'
   c.hook_into :webmock # or :fakeweb
+  c.allow_http_connections_when_no_cassette = true
 end
 
 # Checks for pending migrations before tests are run.

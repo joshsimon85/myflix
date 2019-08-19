@@ -1,0 +1,175 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.stripe.com/v1/tokens
+    body:
+      encoding: UTF-8
+      string: card[number]=4000000000000002&card[exp_month]=6&card[exp_year]=2020&card[cvc]=314
+    headers:
+      User-Agent:
+      - Stripe/v1 RubyBindings/4.24.0
+      Authorization:
+      - Bearer sk_test_lWClzCliySLOdF8PQxX3EosS00RfNnQJrQ
+      Content-Type:
+      - application/x-www-form-urlencoded
+      X-Stripe-Client-User-Agent:
+      - '{"bindings_version":"4.24.0","lang":"ruby","lang_version":"2.3.1 p112 (2016-04-26)","platform":"x86_64-darwin18","engine":"ruby","publisher":"stripe","uname":"Darwin
+        Joshuas-MacBook-Air.local 18.7.0 Darwin Kernel Version 18.7.0: Thu Jun 20
+        18:42:21 PDT 2019; root:xnu-4903.270.47~4/RELEASE_X86_64 x86_64","hostname":"Joshuas-MacBook-Air.local"}'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      Connection:
+      - keep-alive
+      Keep-Alive:
+      - 30
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Thu, 15 Aug 2019 15:55:31 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '787'
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Methods:
+      - GET, POST, HEAD, OPTIONS, DELETE
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - Request-Id, Stripe-Manage-Version, X-Stripe-External-Auth-Required, X-Stripe-Privileged-Session-Required
+      Access-Control-Max-Age:
+      - '300'
+      Cache-Control:
+      - no-cache, no-store
+      Request-Id:
+      - req_Eqix1bgR0pnBqI
+      Stripe-Version:
+      - '2019-05-16'
+      Strict-Transport-Security:
+      - max-age=31556926; includeSubDomains; preload
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "id": "tok_1F7lIVHhKKdrqy8kXiKX1N5x",
+          "object": "token",
+          "card": {
+            "id": "card_1F7lIUHhKKdrqy8kubMP1Wt7",
+            "object": "card",
+            "address_city": null,
+            "address_country": null,
+            "address_line1": null,
+            "address_line1_check": null,
+            "address_line2": null,
+            "address_state": null,
+            "address_zip": null,
+            "address_zip_check": null,
+            "brand": "Visa",
+            "country": "US",
+            "cvc_check": "unchecked",
+            "dynamic_last4": null,
+            "exp_month": 6,
+            "exp_year": 2020,
+            "fingerprint": "QLDmA1rj7Xsj14ZV",
+            "funding": "credit",
+            "last4": "0002",
+            "metadata": {
+            },
+            "name": null,
+            "tokenization_method": null
+          },
+          "client_ip": "174.149.140.191",
+          "created": 1565884531,
+          "livemode": false,
+          "type": "card",
+          "used": false
+        }
+    http_version: 
+  recorded_at: Thu, 15 Aug 2019 15:55:31 GMT
+- request:
+    method: post
+    uri: https://api.stripe.com/v1/charges
+    body:
+      encoding: UTF-8
+      string: amount=999&currency=usd&card=tok_1F7lIVHhKKdrqy8kXiKX1N5x&description=an+ivalid+charge
+    headers:
+      User-Agent:
+      - Stripe/v1 RubyBindings/4.24.0
+      Authorization:
+      - Bearer sk_test_lWClzCliySLOdF8PQxX3EosS00RfNnQJrQ
+      Content-Type:
+      - application/x-www-form-urlencoded
+      X-Stripe-Client-Telemetry:
+      - '{"last_request_metrics":{"request_id":"req_Eqix1bgR0pnBqI","request_duration_ms":2025}}'
+      X-Stripe-Client-User-Agent:
+      - '{"bindings_version":"4.24.0","lang":"ruby","lang_version":"2.3.1 p112 (2016-04-26)","platform":"x86_64-darwin18","engine":"ruby","publisher":"stripe","uname":"Darwin
+        Joshuas-MacBook-Air.local 18.7.0 Darwin Kernel Version 18.7.0: Thu Jun 20
+        18:42:21 PDT 2019; root:xnu-4903.270.47~4/RELEASE_X86_64 x86_64","hostname":"Joshuas-MacBook-Air.local"}'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      Connection:
+      - keep-alive
+      Keep-Alive:
+      - 30
+  response:
+    status:
+      code: 402
+      message: Payment Required
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Thu, 15 Aug 2019 15:55:32 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '269'
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Methods:
+      - GET, POST, HEAD, OPTIONS, DELETE
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - Request-Id, Stripe-Manage-Version, X-Stripe-External-Auth-Required, X-Stripe-Privileged-Session-Required
+      Access-Control-Max-Age:
+      - '300'
+      Cache-Control:
+      - no-cache, no-store
+      Request-Id:
+      - req_UCalx2i2bgBII2
+      Stripe-Version:
+      - '2019-05-16'
+      Strict-Transport-Security:
+      - max-age=31556926; includeSubDomains; preload
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "error": {
+            "charge": "ch_1F7lIWHhKKdrqy8kgFIotrdV",
+            "code": "card_declined",
+            "decline_code": "generic_decline",
+            "doc_url": "https://stripe.com/docs/error-codes/card-declined",
+            "message": "Your card was declined.",
+            "type": "card_error"
+          }
+        }
+    http_version: 
+  recorded_at: Thu, 15 Aug 2019 15:55:32 GMT
+recorded_with: VCR 2.9.3

@@ -11,9 +11,11 @@ describe UsersController do
   end
 
   describe 'POST create' do
-    context 'with valid input' do
+    context 'valid personal info and valid card' do
+      let(:charge) { double('charge', successful?: true) }
+
       before do
-        allow(StripeWrapper::Charge).to receive(:create)
+        allow(StripeWrapper::Charge).to receive(:create).and_return(charge)
         post :create, user: Fabricate.attributes_for(:user)
       end
 
@@ -49,7 +51,28 @@ describe UsersController do
       end
     end
 
-    context 'with invalid input' do
+    context 'valid personal info and declined card' do
+      let(:charge) { double('charge', successful?: false, error_message: 'Your card was declined') }
+
+      before do
+        allow(StripeWrapper::Charge).to receive(:create).and_return(charge)
+        post :create, user: Fabricate.attributes_for(:user), stripeToken: '1231241'
+      end
+
+      it 'does not create a new user record' do
+        expect(User.count).to eq(0)
+      end
+
+      it 'renders the new template' do
+        charge = double('charge', successful?: false)
+      end
+
+      it 'sets the flash error message' do
+        expect(flash[:error]).to be_present
+      end
+    end
+
+    context 'with invalid personal info' do
       before do
         allow(StripeWrapper::Charge).to receive(:create)
         post :create, user: { password: 'password', full_name: 'Jon Doe' }
@@ -66,12 +89,19 @@ describe UsersController do
       it 'sets @user' do
         expect(assigns(:user)).to be_instance_of(User)
       end
+
+      it 'does not charge the card' do
+        StripeWrapper::Charge.should_not_receive(:create)
+        post :create, user: { email: 'joe@example.com' }
+      end
     end
 
     context 'sending emails' do
+      let(:charge) { double('charge', successful?: true) }
+
       before do
-        allow(StripeWrapper::Charge).to receive(:create)
         ActionMailer::Base.deliveries.clear
+        allow(StripeWrapper::Charge).to receive(:create).and_return(charge)
       end
 
       it 'sends out email to the user with valid inputs' do

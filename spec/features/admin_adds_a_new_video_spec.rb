@@ -6,6 +6,7 @@ feature 'Admin adds a new video' do
     dramas = Fabricate(:category, name: 'Dramas')
 
     sign_in(admin)
+
     visit new_admin_video_path
 
     fill_in 'Title', with: 'Monk'
