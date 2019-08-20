@@ -90,6 +90,11 @@ GEM
     dotenv-rails (2.7.5)
       dotenv (= 2.7.5)
       railties (>= 3.2, < 6.1)
+    draper (2.1.0)
+      actionpack (>= 3.0)
+      activemodel (>= 3.0)
+      activesupport (>= 3.0)
+      request_store (~> 1.0)
     erubi (1.8.0)
     erubis (2.7.0)
     eventmachine (1.2.7)
@@ -223,6 +228,8 @@ GEM
     rb-readline (0.5.5)
     redis (4.1.2)
     regexp_parser (1.6.0)
+    request_store (1.4.1)
+      rack (>= 1.4)
     rest-client (2.0.2)
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 4.0)
@@ -327,6 +334,7 @@ DEPENDENCIES
   coffee-rails
   database_cleaner (= 1.4.1)
   dotenv-rails
+  draper (~> 2.1)
   fabrication (= 2.15.2)
   faker (= 1.6.1)
   fog-aws

@@ -4,32 +4,34 @@ feature 'User invites a friend' do
   after { ActionMailer::Base.deliveries.clear }
 
   scenario 'User successfully invites a friend and invitation is accepted', js: true do
-    #VCR.use_cassette('regiseter pay with stripe') do
-      alice = Fabricate(:user)
-      sign_in(alice)
-      sleep 2
+    alice = Fabricate(:user)
+    sign_in(alice)
+    sleep 2
 
-      invite_a_friend
+    invite_a_friend
 
-      friend_accepts_invitation
 
-      friend_signs_in
+    friend_accepts_invitation
 
-      friend_should_follow(alice)
+    friend_signs_in
 
-      inviter_should_follow_friend(alice)
+    friend_should_follow(alice)
 
-      clear_email
-    #end
+    inviter_should_follow_friend(alice)
+
+    clear_email
   end
 
   def invite_a_friend
     visit new_invitation_path
     sleep 2
+
     fill_in "Friend's Name", with: 'Jon Doe'
     fill_in "Friend's Email Address", with: 'jon@example.com'
     fill_in 'Message', with: 'Please join this site.'
     click_on 'Send Invitation'
+
+
     sign_out
   end
 
@@ -37,6 +39,7 @@ feature 'User invites a friend' do
     sleep 5
     open_email 'jon@example.com'
     current_email.click_link 'Accept this invitation'
+
     fill_in 'Password', with: 'password'
     fill_in 'Full Name', with: 'Jon Doe'
     fill_in 'Credit Card Number', with: '4242424242424242'
@@ -44,6 +47,7 @@ feature 'User invites a friend' do
     select '7 - July', from: 'date_month'
     select '2020', from: 'date_year'
     click_on 'Sign Up'
+
     sleep 2
   end
 
