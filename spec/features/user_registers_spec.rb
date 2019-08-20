@@ -12,61 +12,61 @@ feature 'User registers', js: true do
     visit register_path
   end
 
-  # scenario 'with valid user info and valid card' do
-  #   fill_in_user_info
-  #   fill_in_payment_info
-  #   click_button 'Sign Up'
-  #   sleep 2
-  #
-  #   expect(page).to have_content 'You have registered'
-  # end
+  scenario 'with valid user info and valid card' do
+    fill_in_user_info
+    fill_in_payment_info
+    click_button 'Sign Up'
+    sleep 2
 
-  # scenario 'with valid user info and invalid card' do
-  #   fill_in_user_info
-  #   fill_in_payment_info(card_number: INVALID_CARD)
-  #   click_button 'Sign Up'
-  #   sleep 2
-  #
-  #   expect(page).to have_content 'Your card number is incorrect.'
-  # end
+    expect(page).to have_content 'You have registered'
+  end
 
-  # scenario 'with valid user info and declined card' do
-  #   fill_in_user_info
-  #   fill_in_payment_info({card_number: DECLINED_CARD})
-  #   click_button 'Sign Up'
-  #   sleep 2
-  #
-  #   expect(page).to have_content 'Your card was declined.'
-  # end
+  scenario 'with valid user info and invalid card' do
+    fill_in_user_info
+    fill_in_payment_info(card_number: INVALID_CARD)
+    click_button 'Sign Up'
+    sleep 2
 
-  # scenario 'with invalid user info and valid card' do
-  #   fill_in_user_info({valid: false})
-  #   fill_in_payment_info
-  #   click_button 'Sign Up'
-  #   sleep 2
-  #
-  #   expect(page).to have_content "can't be blank"
-  # end
+    expect(page).to have_content 'Your card number is incorrect.'
+  end
 
-  # scenario 'with invalid user info and invalid card' do
-  #   fill_in_user_info({valid: false})
-  #   fill_in_payment_info({card_number: INVALID_CARD})
-  #   click_button 'Sign Up'
-  #   sleep 2
-  #
-  #   expect(page).to have_content "Your card number is incorrect"
-  #   expect(User.count).to eq(0)
-  # end
+  scenario 'with valid user info and declined card' do
+    fill_in_user_info
+    fill_in_payment_info({card_number: DECLINED_CARD})
+    click_button 'Sign Up'
+    sleep 2
 
-  # scenario 'with invalid user info and declined card' do
-  #   fill_in_user_info({valid: false})
-  #   fill_in_payment_info({card_number: DECLINED_CARD})
-  #   click_button 'Sign Up'
-  #   sleep 2
-  #
-  #   expect(page).to have_content "can't be blank"
-  #   expect(User.count).to eq(0)
-  # end
+    expect(page).to have_content 'Your card was declined.'
+  end
+
+  scenario 'with invalid user info and valid card' do
+    fill_in_user_info({valid: false})
+    fill_in_payment_info
+    click_button 'Sign Up'
+    sleep 2
+
+    expect(page).to have_content "can't be blank"
+  end
+
+  scenario 'with invalid user info and invalid card' do
+    fill_in_user_info({valid: false})
+    fill_in_payment_info({card_number: INVALID_CARD})
+    click_button 'Sign Up'
+    sleep 2
+
+    expect(page).to have_content "Your card number is incorrect"
+    expect(User.count).to eq(0)
+  end
+
+  scenario 'with invalid user info and declined card' do
+    fill_in_user_info({valid: false})
+    fill_in_payment_info({card_number: DECLINED_CARD})
+    click_button 'Sign Up'
+    sleep 2
+
+    expect(page).to have_content "can't be blank"
+    expect(User.count).to eq(0)
+  end
 end
 
 def default_year
