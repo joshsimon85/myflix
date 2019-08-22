@@ -4,7 +4,7 @@ class Video < ActiveRecord::Base
 
   mount_uploader :large_cover, LargeCoverUploader
   mount_uploader :small_cover, SmallCoverUploader
-  
+
   validates_presence_of :title, :description
 
   def self.search_by_title(title)
@@ -13,8 +13,8 @@ class Video < ActiveRecord::Base
     where('title ~* ?', title).order(created_at: :desc)
   end
 
-  def average_rating
-    return 5.0 if reviews.size == 0
+  def rating
+    return nil if reviews.size == 0
     average = reviews.map{ |review| review.rating }.reduce(&:+) / (reviews.size.to_f)
   end
 

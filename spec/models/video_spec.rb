@@ -35,24 +35,24 @@ describe '#search_by_title' do
   end
 end
 
-describe '#average_rating' do
-  it 'should return 5.0 if there are no ratings' do
+describe '#rating' do
+  it 'should return nil if there are no ratings' do
     video = Video.create(title: 'South Park', description: 'A comedy')
-    expect(video.average_rating).to eq(5.0)
+    expect(video.rating).to be_nil
   end
 
   it 'should return the average of all ratings' do
     video = Video.create(title: 'South Park', description: 'A comedy')
     review = Review.create(full_name: 'Jane Doe', body: Faker::Lorem.paragraph(2), rating: Faker::Number.between(1, 5), user_id: 1, video_id: video.id)
     review_2 = Review.create(full_name: 'Jane Doe', body: Faker::Lorem.paragraph(2), rating: Faker::Number.between(1, 5), user_id: 2, video_id: video.id)
-    expect(video.average_rating).to eq((review.rating + review_2.rating) / 2.0)
+    expect(video.rating).to eq((review.rating + review_2.rating) / 2.0)
   end
 
   it 'should return a decimal rating when the rating is not a whole number 4.2' do
     video = Video.create(title: 'South Park', description: 'A comedy')
     review = Review.create(full_name: 'Jane Doe', body: Faker::Lorem.paragraph(2), rating: Faker::Number.between(1, 5), user_id: 1, video_id: video.id)
     review_2 = Review.create(full_name: 'Jane Doe', body: Faker::Lorem.paragraph(2), rating: Faker::Number.between(1, 5), user_id: 2, video_id: video.id)
-    expect(video.average_rating).to eq((review.rating + review_2.rating) / 2.0)
+    expect(video.rating).to eq((review.rating + review_2.rating) / 2.0)
   end
 end
 

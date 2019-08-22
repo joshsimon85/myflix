@@ -9,28 +9,15 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
+    result = UserSignup.new(@user).sign_up(params[:stripeToken], params[:invitation_token])
 
-    if @user.valid?
-      handle_invitation
-      charge = StripeWrapper::Charge.create({
-        amount: 999,
-        card: params[:stripeToken],
-        description: "Sign up charge for #{@user.email}"
-      })
-
-      if charge.successful?
-        @user.save
-        AppMailer.delay.send_welcome_email(@user.id)
-        flash[:notice] = 'You have registered'
-        redirect_to sign_in_path
-      else
-        flash[:error] = charge.error_message
-        render :new
-      end
+    if result.successful?
+      flash[:notice] = 'You have registered'
+      redirect_to sign_in_path
     else
-      flash[:error] = 'Invalid user information, please correct the errors.'
-      render 'new'
-    end
+      flash[:error] = result.error_message
+      render :new
+    end 
   end
 
   def show
@@ -49,15 +36,6 @@ class UsersController < ApplicationController
   end
 
   private
-
-  def handle_invitation
-    if params[:invitation_token].present?
-      invitation = Invitation.where(token: params[:invitation_token]).first
-      invitation.inviter.follow(@user)
-      @user.follow(invitation.inviter)
-      invitation.update_column(:token, nil)
-    end
-  end
 
   def user_params
     params.require(:user).permit(:email, :password, :full_name)
