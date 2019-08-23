@@ -10,14 +10,13 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     result = UserSignup.new(@user).sign_up(params[:stripeToken], params[:invitation_token])
-
     if result.successful?
       flash[:notice] = 'You have registered'
       redirect_to sign_in_path
     else
       flash[:error] = result.error_message
       render :new
-    end 
+    end
   end
 
   def show

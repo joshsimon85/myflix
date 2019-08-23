@@ -22,8 +22,8 @@ describe UsersController do
 
     context 'failed user sign up' do
       before do
-        charge = double(:charge, successful?: false, error_message: 'Your card was declined')
-        StripeWrapper::Charge.should_receive(:create).and_return(charge)
+        customer = double(:customer, successful?: false, error_message: 'Your card was declined')
+        StripeWrapper::Customer.should_receive(:create).and_return(customer)
         post :create, user: Fabricate.attributes_for(:user)
       end
 

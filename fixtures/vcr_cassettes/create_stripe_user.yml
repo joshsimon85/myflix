@@ -5,7 +5,7 @@ http_interactions:
     uri: https://api.stripe.com/v1/tokens
     body:
       encoding: UTF-8
-      string: card[number]=4000000000000002&card[exp_month]=6&card[exp_year]=2020&card[cvc]=314
+      string: card[number]=4242424242424242&card[exp_month]=6&card[exp_year]=2020&card[cvc]=314
     headers:
       User-Agent:
       - Stripe/v1 RubyBindings/4.24.0
@@ -13,8 +13,6 @@ http_interactions:
       - Bearer sk_test_lWClzCliySLOdF8PQxX3EosS00RfNnQJrQ
       Content-Type:
       - application/x-www-form-urlencoded
-      X-Stripe-Client-Telemetry:
-      - '{"last_request_metrics":{"request_id":"req_g4eaLh6Lmq7DmJ","request_duration_ms":4}}'
       X-Stripe-Client-User-Agent:
       - '{"bindings_version":"4.24.0","lang":"ruby","lang_version":"2.3.1 p112 (2016-04-26)","platform":"x86_64-darwin18","engine":"ruby","publisher":"stripe","uname":"Darwin
         Joshuas-MacBook-Air.local 18.7.0 Darwin Kernel Version 18.7.0: Thu Jun 20
@@ -35,11 +33,11 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Thu, 22 Aug 2019 18:35:54 GMT
+      - Thu, 22 Aug 2019 19:14:02 GMT
       Content-Type:
       - application/json
       Content-Length:
-      - '786'
+      - '787'
       Connection:
       - keep-alive
       Access-Control-Allow-Credentials:
@@ -55,7 +53,7 @@ http_interactions:
       Cache-Control:
       - no-cache, no-store
       Request-Id:
-      - req_KPmHLWJLDWgZFo
+      - req_LIuTQK3dlc2ssR
       Stripe-Version:
       - '2019-05-16'
       Strict-Transport-Security:
@@ -64,10 +62,10 @@ http_interactions:
       encoding: UTF-8
       string: |
         {
-          "id": "tok_1FAL8YHhKKdrqy8kxF9ngE1S",
+          "id": "tok_1FALjSHhKKdrqy8kcGixGmiq",
           "object": "token",
           "card": {
-            "id": "card_1FAL8YHhKKdrqy8kADHdIvn9",
+            "id": "card_1FALjRHhKKdrqy8kTVeDsxHX",
             "object": "card",
             "address_city": null,
             "address_country": null,
@@ -83,28 +81,28 @@ http_interactions:
             "dynamic_last4": null,
             "exp_month": 6,
             "exp_year": 2020,
-            "fingerprint": "QLDmA1rj7Xsj14ZV",
+            "fingerprint": "bkIRbVmaLjiyDho4",
             "funding": "credit",
-            "last4": "0002",
+            "last4": "4242",
             "metadata": {
             },
             "name": null,
             "tokenization_method": null
           },
-          "client_ip": "174.149.60.248",
-          "created": 1566498954,
+          "client_ip": "174.149.226.244",
+          "created": 1566501242,
           "livemode": false,
           "type": "card",
           "used": false
         }
     http_version: 
-  recorded_at: Thu, 22 Aug 2019 18:35:55 GMT
+  recorded_at: Thu, 22 Aug 2019 19:14:02 GMT
 - request:
     method: post
-    uri: https://api.stripe.com/v1/charges
+    uri: https://api.stripe.com/v1/customers
     body:
       encoding: UTF-8
-      string: amount=999&currency=usd&card=tok_1FAL8YHhKKdrqy8kxF9ngE1S&description=an+ivalid+charge
+      string: source=tok_1FALjSHhKKdrqy8kcGixGmiq&email=reggie.tromp%40lemke.io
     headers:
       User-Agent:
       - Stripe/v1 RubyBindings/4.24.0
@@ -113,7 +111,7 @@ http_interactions:
       Content-Type:
       - application/x-www-form-urlencoded
       X-Stripe-Client-Telemetry:
-      - '{"last_request_metrics":{"request_id":"req_KPmHLWJLDWgZFo","request_duration_ms":1234}}'
+      - '{"last_request_metrics":{"request_id":"req_LIuTQK3dlc2ssR","request_duration_ms":1237}}'
       X-Stripe-Client-User-Agent:
       - '{"bindings_version":"4.24.0","lang":"ruby","lang_version":"2.3.1 p112 (2016-04-26)","platform":"x86_64-darwin18","engine":"ruby","publisher":"stripe","uname":"Darwin
         Joshuas-MacBook-Air.local 18.7.0 Darwin Kernel Version 18.7.0: Thu Jun 20
@@ -128,17 +126,17 @@ http_interactions:
       - 30
   response:
     status:
-      code: 402
-      message: Payment Required
+      code: 200
+      message: OK
     headers:
       Server:
       - nginx
       Date:
-      - Thu, 22 Aug 2019 18:35:55 GMT
+      - Thu, 22 Aug 2019 19:14:03 GMT
       Content-Type:
       - application/json
       Content-Length:
-      - '269'
+      - '1898'
       Connection:
       - keep-alive
       Access-Control-Allow-Credentials:
@@ -154,7 +152,7 @@ http_interactions:
       Cache-Control:
       - no-cache, no-store
       Request-Id:
-      - req_D4anqDLGh3vuuy
+      - req_9pBTRV5ZvkCiCK
       Stripe-Version:
       - '2019-05-16'
       Strict-Transport-Security:
@@ -163,15 +161,89 @@ http_interactions:
       encoding: UTF-8
       string: |
         {
-          "error": {
-            "charge": "ch_1FAL8ZHhKKdrqy8kBGD7v9Eq",
-            "code": "card_declined",
-            "decline_code": "generic_decline",
-            "doc_url": "https://stripe.com/docs/error-codes/card-declined",
-            "message": "Your card was declined.",
-            "type": "card_error"
-          }
+          "id": "cus_Ffh7LJKdBj60AZ",
+          "object": "customer",
+          "account_balance": 0,
+          "address": null,
+          "balance": 0,
+          "created": 1566501243,
+          "currency": null,
+          "default_source": "card_1FALjRHhKKdrqy8kTVeDsxHX",
+          "delinquent": false,
+          "description": null,
+          "discount": null,
+          "email": "reggie.tromp@lemke.io",
+          "invoice_prefix": "D8CD670E",
+          "invoice_settings": {
+            "custom_fields": null,
+            "default_payment_method": null,
+            "footer": null
+          },
+          "livemode": false,
+          "metadata": {
+          },
+          "name": null,
+          "phone": null,
+          "preferred_locales": [
+
+          ],
+          "shipping": null,
+          "sources": {
+            "object": "list",
+            "data": [
+              {
+                "id": "card_1FALjRHhKKdrqy8kTVeDsxHX",
+                "object": "card",
+                "address_city": null,
+                "address_country": null,
+                "address_line1": null,
+                "address_line1_check": null,
+                "address_line2": null,
+                "address_state": null,
+                "address_zip": null,
+                "address_zip_check": null,
+                "brand": "Visa",
+                "country": "US",
+                "customer": "cus_Ffh7LJKdBj60AZ",
+                "cvc_check": "pass",
+                "dynamic_last4": null,
+                "exp_month": 6,
+                "exp_year": 2020,
+                "fingerprint": "bkIRbVmaLjiyDho4",
+                "funding": "credit",
+                "last4": "4242",
+                "metadata": {
+                },
+                "name": null,
+                "tokenization_method": null
+              }
+            ],
+            "has_more": false,
+            "total_count": 1,
+            "url": "/v1/customers/cus_Ffh7LJKdBj60AZ/sources"
+          },
+          "subscriptions": {
+            "object": "list",
+            "data": [
+
+            ],
+            "has_more": false,
+            "total_count": 0,
+            "url": "/v1/customers/cus_Ffh7LJKdBj60AZ/subscriptions"
+          },
+          "tax_exempt": "none",
+          "tax_ids": {
+            "object": "list",
+            "data": [
+
+            ],
+            "has_more": false,
+            "total_count": 0,
+            "url": "/v1/customers/cus_Ffh7LJKdBj60AZ/tax_ids"
+          },
+          "tax_info": null,
+          "tax_info_verification": null
         }
     http_version: 
-  recorded_at: Thu, 22 Aug 2019 18:35:56 GMT
+  recorded_at: Thu, 22 Aug 2019 19:14:03 GMT
 recorded_with: VCR 2.9.3
