@@ -289,6 +289,9 @@ GEM
     stripe (4.24.0)
       faraday (~> 0.13)
       net-http-persistent (~> 3.0)
+    stripe_event (2.2.0)
+      activesupport (>= 3.1)
+      stripe (>= 2.8, < 5.0)
     temple (0.8.1)
     thin (1.7.2)
       daemons (~> 1.0, >= 1.0.9)
@@ -359,6 +362,7 @@ DEPENDENCIES
   shoulda-matchers (= 2.7.0)
   sidekiq
   stripe
+  stripe_event
   thin
   uglifier
   unicorn

@@ -13,6 +13,7 @@ Myflix::Application.routes.draw do
   post 'update_queue', to: 'queue_items#update_queue'
   get 'expired_token', to: 'pages#expired_token'
   get 'register/:token', to: 'users#new_with_invitation_token', as: 'register_with_token'
+
   resources :videos, only: :show do
     collection do
       get '/search', to: 'videos#search'
@@ -32,6 +33,10 @@ Myflix::Application.routes.draw do
   resources :categories, only: :show
   resources :sessions, only: :create
   resources :users, only: [:create, :show]
+
   get '/people', to: 'relationships#index'
+
   resources :relationships, only: [:create, :destroy]
+
+  mount StripeEvent::Engine, at: '/stripe_events'
 end

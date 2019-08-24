@@ -14,6 +14,7 @@ class UserSignup
       })
 
       if customer.successful?
+        @user.customer_token = customer.customer_token
         @user.save
         AppMailer.delay.send_welcome_email(@user.id)
         @status = :success

@@ -86,6 +86,26 @@ describe StripeWrapper do
           end
         end
 
+        it 'returns the customer token for a valid card' do
+          VCR.use_cassette('customer token') do
+            alice = Fabricate(:user)
+            valid_token = Stripe::Token.create({
+              card: {
+                number: '4242424242424242',
+                exp_month: 6,
+                exp_year: 2020,
+                cvc: 314
+              }
+            }).id
+
+            response = StripeWrapper::Customer.create(
+              user: alice,
+              card: valid_token
+            )
+            expect(response.customer_token).to be_present
+          end
+        end
+
         it 'does not create a customer with a declined card' do
           VCR.use_cassette('does not create stripe user') do
             alice = Fabricate(:user)
