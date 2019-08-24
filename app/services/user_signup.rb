@@ -10,7 +10,7 @@ class UserSignup
       handle_invitation(invitation_token)
       customer = StripeWrapper::Customer.create({
         user: @user,
-        card: stripe_token
+        card: stripe_token,
       })
 
       if customer.successful?
@@ -36,12 +36,6 @@ class UserSignup
   end
 
   private
-
-  # def handle_subscription(customer)
-  #   StripeWrapper::Subscription.create({
-  #     customer: customer.response.id
-  #   })
-  # end
 
   def handle_invitation(invitation_token)
     if invitation_token.present?
