@@ -55,4 +55,31 @@ module StripeWrapper
       response.id
     end
   end
+
+  class Subscription
+    attr_reader :response, :status
+
+    def initialize(options={})
+      @response = options[:response]
+      @status = options[:status]
+    end
+
+    def self.create(customer)
+      response = Stripe::Subscription.create({
+        customer: customer.response[:id],
+        items: [
+          {
+            plan: ENV['STRIPE_BASE_PLAN'],
+          },
+        ],
+        expand: ['latest_invoice.payment_intent']
+      })
+
+      new({response: response, status: response['latest_invoice']['payment_intent']['status']})
+    end
+
+    def successful?
+      self.status == 'succeeded'
+    end
+  end
 end

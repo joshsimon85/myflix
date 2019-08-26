@@ -36,7 +36,7 @@ feature 'User registers', js: true do
     click_button 'Sign Up'
     sleep 2
 
-    expect(page).to have_content 'Your card was declined.'
+    expect(page).to have_content 'There was a problem processing your payment, please try another payment method'
   end
 
   scenario 'with invalid user info and valid card' do

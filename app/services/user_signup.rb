@@ -12,13 +12,20 @@ class UserSignup
         user: @user,
         card: stripe_token,
       })
-
       if customer.successful?
-        @user.customer_token = customer.customer_token
-        @user.save
-        AppMailer.delay.send_welcome_email(@user.id)
-        @status = :success
-        self
+        subscription = StripeWrapper::Subscription.create(customer)
+
+        if subscription.successful?
+          @user.customer_token = customer.customer_token
+          @user.save
+          AppMailer.delay.send_welcome_email(@user.id)
+          @status = :success
+          self
+        else
+          @status = :failed
+          @error_message = 'There was a problem processing your payment, please try another payment method'
+          self
+        end
       else
         @status = :failed
         @error_message = customer.error_message

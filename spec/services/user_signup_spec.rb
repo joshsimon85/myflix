@@ -9,9 +9,11 @@ describe UserSignup do
 
     context 'valid personal info and valid card' do
       let(:customer) { double(:customer, successful?: true, customer_token: 'abcdefg') }
+      let(:response) { double(:response, successful?: true, status: 'succeeded') }
 
       before do
         allow(StripeWrapper::Customer).to receive(:create).and_return(customer)
+        allow(StripeWrapper::Subscription).to receive(:create).and_return(response)
       end
 
       it 'create the user' do
@@ -76,7 +78,9 @@ describe UserSignup do
       it 'does not create a new user record' do
         VCR.use_cassette('does not create a new user') do
           customer = double(:customer, successful?: false, error_message: 'Your card was declined.')
+          subscription = double(:subscription, successful?: false, status: 'requires_payment_method')
           allow(StripeWrapper::Customer).to receive(:create).and_return(customer)
+          allow(StripeWrapper::Subscription).to receive(:create).and_return(subscription)
           UserSignup.new(Fabricate.build(:user)).sign_up('1231241', nil)
           expect(User.count).to eq(0)
         end

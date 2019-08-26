@@ -147,5 +147,50 @@ describe StripeWrapper do
         end
       end
     end
+
+    describe StripeWrapper::Subscription do
+      it 'creates a subscription with a valid customer and card' do
+        VCR.use_cassette('does create a subscription') do
+          alice = Fabricate(:user)
+          valid_token = Stripe::Token.create({
+            card: {
+              number: '4242424242424242',
+              exp_month: 6,
+              exp_year: 2020,
+              cvc: 314
+            }
+          }).id
+
+          customer = StripeWrapper::Customer.create(
+            user: alice,
+            card: valid_token
+          )
+          subscription = StripeWrapper::Subscription.create(customer)
+          expect(subscription.status).to eq('succeeded')
+        end
+      end
+
+      it 'does not create a subscription with an invalid card' do
+        VCR.use_cassette('does not create a subscription') do
+          alice = Fabricate(:user)
+          invalid_token = Stripe::Token.create({
+            card: {
+              number: '4000000000000002',
+              exp_month: 6,
+              exp_year: 2020,
+              cvc: 314
+            }
+          }).id
+
+          customer = StripeWrapper::Customer.create(
+            user: alice,
+            card: invalid_token
+          )
+
+          subscription = StripeWrapper::Subscription.create(customer)
+          expect(subscription.status).to eq('requires_payment_method')
+        end
+      end
+    end
   end
 end
