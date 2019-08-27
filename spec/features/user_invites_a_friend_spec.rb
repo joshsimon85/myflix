@@ -10,7 +10,6 @@ feature 'User invites a friend' do
 
     invite_a_friend
 
-
     friend_accepts_invitation
 
     friend_signs_in

@@ -33,4 +33,8 @@ class User < ActiveRecord::Base
   def admin?
     self.admin
   end
+
+  def deactivate!
+    update_column(:active, false)
+  end
 end
