@@ -39,7 +39,6 @@ module StripeWrapper
         response = Stripe::Customer.create(
           source: options[:card],
           email: options[:user].email,
-          plan: ENV['STRIPE_BASE_PLAN']
         )
         new(response: response)
       rescue Stripe::CardError => e
