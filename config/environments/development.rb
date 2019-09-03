@@ -11,7 +11,7 @@ Myflix::Application.configure do
   config.action_mailer.default_url_options = { host: 'localhost:3000' }
   # Print deprecation notices to the Rails logger
   config.active_support.deprecation = :log
-
+  config.active_record.raise_in_transactional_callbacks = true
   # Do not compress assets
   config.assets.compress = false
 

@@ -1,4 +1,8 @@
 class Video < ActiveRecord::Base
+  include Elasticsearch::Model
+  index_name ['myflix', Rails.env].join('_')
+  document_type 'video'
+  
   belongs_to :category
   has_many :reviews
 
