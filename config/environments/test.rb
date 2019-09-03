@@ -15,4 +15,5 @@ Myflix::Application.configure do
 
   config.action_mailer.delivery_method = :test
   config.active_support.deprecation = :stderr
+  config.active_record.raise_in_transactional_callbacks = true
 end
