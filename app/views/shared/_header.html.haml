@@ -1,15 +1,16 @@
 %section#top-header.row
   %h1.col-md-2
-    = link_to "MyFLiX"
+    = link_to "MyFLiX", root_path
   - if current_user
-    %ul.col-md-4.clearfix
+    %ul.col-md-3.clearfix
       %li= link_to "Videos", home_path
       %li= link_to "My Queue", my_queue_path
       %li= link_to "People", people_path
-    %form.col-md-5.navbar-form(action="#{search_videos_path}")
+    %form.col-md-4.navbar-form(action="#{search_videos_path}")
       .form-group
         %input.form-control(type="text" name="query" placeholder="Search for videos here")
       %button.btn.btn-default(type="submit") Search
+    =link_to 'Advanced Search', advanced_search_videos_path, html_options = { class: 'col-md-1 text-center'}
     #user_links.pull-right
       %ul
         %li.dropdown
